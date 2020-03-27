@@ -23,25 +23,7 @@ import {didactProtocol, DidactUriCompletionItemProvider} from './didactUriComple
 export class DidactUriCompletionItemProviderMarkdown extends DidactUriCompletionItemProvider {
 
 	protected getCommandCompletionItems() : vscode.CompletionItem[] {
-		let completions: vscode.CompletionItem[] = [];
-
-		// Terminal commands
-		super.startTerminalWithNameCompletion("Start Terminal with Name", completions);
-		super.sendNamedTerminalAStringCompletion("Send Named Terminal Some Text", completions);
-		super.sendTerminalCtrlCCompletion("Send Named Terminal a Ctrl+C", completions);
-		super.closeTerminalCompletion("Close Terminal with Name", completions);
-
-		// Non-didact command
-		super.nonDidactCommandCompletion("Non-Didact Command", completions);
-
-		// Requirements commands
-		super.commandLineTextRequirementCompletion("Check CLI for Returned Text", completions);
-		super.commandLineRequirementCompletion("Check CLI for Success (No Text)", completions);
-		super.extensionRequirementCompletion("Check for Required Extension", completions);
-		super.workspaceFolderRequirementCompletion("Check for Root Folder in the WS", completions);
-
-		// Project Scaffolding commands
-		super.projectScaffoldingCompletion("Scaffold Project", completions);
+		let completions: vscode.CompletionItem[] = super.getCommandCompletionItems();
 
 		// Starting other didact files
 		super.startDidactCompletion("Start Didact from Currently Selected File", completions);

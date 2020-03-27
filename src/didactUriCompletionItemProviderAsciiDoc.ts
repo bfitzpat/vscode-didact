@@ -24,28 +24,7 @@ import * as extensionFunctions from './extensionFunctions';
 export class DidactUriCompletionItemProviderAsciiDoc extends DidactUriCompletionItemProvider {
 
 	protected getCommandCompletionItems() : vscode.CompletionItem[] {
-		let completions : vscode.CompletionItem[] = [];
-
-		// Terminal commands
-		super.startTerminalWithNameCompletion("Start Terminal with Name", completions);
-		super.sendNamedTerminalAStringCompletion("Send Named Terminal Some Text", completions);
-		super.sendTerminalCtrlCCompletion("Send Named Terminal a Ctrl+C", completions);
-		super.closeTerminalCompletion("Close Terminal with Name", completions);
-
-		// Non-didact command
-		super.nonDidactCommandCompletion("Non-Didact Command", completions);
-
-		// Requirements commands
-		super.commandLineTextRequirementCompletion("Check CLI for Returned Text", completions);
-		super.commandLineRequirementCompletion("Check CLI for Success (No Text)", completions);
-		super.extensionRequirementCompletion("Check for Required Extension", completions);
-		super.workspaceFolderRequirementCompletion("Check for Root Folder in the WS", completions);
-
-		// Project Scaffolding commands
-		super.projectScaffoldingCompletion("Scaffold Project", completions);
-
-		// Starting other didact files
-		super.startDidactCompletion("Start Didact from Currently Selected File", completions);
+		let completions : vscode.CompletionItem[] = super.getCommandCompletionItems();
 
 		// add some additional didact types here because we can't do HTML kinds of things in AsciiDoc
 		this.validateAllRequirementsCompletion("Validate All Didact Requirements", completions);
