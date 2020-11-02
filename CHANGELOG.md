@@ -5,6 +5,7 @@ All notable changes to the "vscode-didact" extension will be documented in this 
 ## 0.1.18
 
  - Added fix to support AsciiDoc include statements. Any adoc include files must be in a location relative to the file in which they are included. [FUSETOOLS2-804](https://issues.redhat.com/browse/FUSETOOLS2-804)
+ - Added a new option when scaffolding files from json. Open = true will open the file in a new text editor [FUSETOOLS2-742](https://issues.redhat.com/browse/FUSETOOLS2-742)
 
 ## 0.1.17
 
