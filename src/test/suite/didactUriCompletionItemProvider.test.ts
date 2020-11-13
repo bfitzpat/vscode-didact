@@ -60,14 +60,14 @@ suite("Didact URI completion provider tests", function () {
 
 	test("that completions work the way they should", async () => {
 		const listOfCompletions : string[] = [
-			'[My Link](didact',
 			'[My Link](didact:',
 			'[My Link](didact:/',
 			'[My Link](didact://',
 			'[My Link](didact://?',
 			'[My Link](didact://?c',
 			'[My Link](didact://?co',
-			'[My Link](didact://?com'
+			'[My Link](didact://?com',
+			'[My Link](didact'
 		];
 
 		suite('walk through each provided completion', () => {

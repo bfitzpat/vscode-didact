@@ -119,14 +119,8 @@ export class DidactUriCompletionItemProvider implements vscode.CompletionItemPro
 		completionItem.insertText = DIDACT_COMMAND_PREFIX;
 		completionItem.documentation = new vscode.MarkdownString(docs);
 		completionItem.command = command;
-		completionItem.filterText
-		
-		const range = this.getWholeDidactString(document, position);
-		if (range) {
-			completionItem.additionalTextEdits = [
-				vscode.TextEdit.delete(range)
-			];
-		}
+		completionItem.filterText = DIDACT_COMMAND_PREFIX;
+		completionItem.range = this.getWholeDidactString(document, position);
 		return completionItem;
 	}
 
