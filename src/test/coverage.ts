@@ -57,7 +57,7 @@ export class CoverageRunner {
         const self = this;
         self.instrumenter = new istanbul.Instrumenter({ coverageVariable: self.coverageVar });
         const sourceRoot = paths.join(self.testsRoot, self.options.relativeSourcePath as string);
-
+        console.log("[Coverage]source root looked up for js files: " + sourceRoot);
         // Glob source files
         const srcFiles = glob.sync('**/**.js', {
             cwd: sourceRoot,
