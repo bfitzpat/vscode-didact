@@ -23,7 +23,7 @@ import { clearRegisteredTutorials, getOpenAtStartupSetting,
 	addNewTutorialWithNameAndCategoryForDidactUri, 
 	removeTutorialByNameAndCategory, 
 	registerEmbeddedTutorials,
-	appendAdditionalTutorials} from './utils';
+	appendAdditionalTutorialsFromEnv} from './utils';
 import { DidactUriCompletionItemProvider } from './didactUriCompletionItemProvider';
 import { DidactPanelSerializer } from './didactPanelSerializer';
 import { didactManager, VIEW_TYPE } from './didactManager';
@@ -118,7 +118,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<any> {
 	}
 
 	// append any additional tutorials if we have them
-	await appendAdditionalTutorials();
+	await appendAdditionalTutorialsFromEnv();
 
 	// create the view
 	createIntegrationsView();

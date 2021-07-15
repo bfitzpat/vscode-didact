@@ -502,18 +502,17 @@ export function getFileExtension(pathAsString: string) : string | undefined {
 	return undefined;
 }
 
-export function getAppendRegisteredSetting() : string | undefined {
-	return extensionFunctions.getContext().workspaceState.get(DIDACT_APPEND_REGISTERED_SETTING);
+export async function getAppendRegisteredSettingFromEnv() : Promise<string | undefined> {
+	const envVar = extensionFunctions.getContext().environmentVariableCollection.get(DIDACT_APPEND_REGISTERED_SETTING);
+	if (!envVar) {
+		return;
+	}
+	return envVar.value;
 }
 
-export async function setAppendRegisteredSetting(json: any): Promise<void> {
-	await extensionFunctions.getContext().workspaceState.update(DIDACT_APPEND_REGISTERED_SETTING, json);
-}
-
-export async function appendAdditionalTutorials() : Promise<void> {
+export async function appendAdditionalTutorialsFromEnv() : Promise<void> {
 	try {
-		await extensionFunctions.sendTextToOutputChannel(`Starting Didact tutorials append process`);
-		const appendTutorialsAtStartup: string | undefined = getAppendRegisteredSetting();
+		const appendTutorialsAtStartup: string | undefined = await getAppendRegisteredSettingFromEnv();
 		if (appendTutorialsAtStartup) {
 			await extensionFunctions.sendTextToOutputChannel(`Didact tutorials appended at startup via ${DIDACT_APPEND_REGISTERED_SETTING} with ${appendTutorialsAtStartup}`);
 			const jsonTutorials = JSON.parse(appendTutorialsAtStartup);
