@@ -503,11 +503,12 @@ export function getFileExtension(pathAsString: string) : string | undefined {
 }
 
 export function getAppendRegisteredSettingFromEnv() : string | undefined {
-	const envVar = extensionFunctions.getContext().environmentVariableCollection.get(DIDACT_APPEND_REGISTERED_SETTING);
-	if (!envVar) {
+	console.log(process.env);
+	const envVar = process.env[DIDACT_APPEND_REGISTERED_SETTING];
+	if (!envVar || (typeof envVar !== 'string')) {
 		return;
 	}
-	return envVar.value;
+	return envVar as string;
 }
 
 export async function appendAdditionalTutorialsFromEnv() : Promise<void> {
