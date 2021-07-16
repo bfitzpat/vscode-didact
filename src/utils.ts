@@ -504,7 +504,6 @@ export function getFileExtension(pathAsString: string) : string | undefined {
 
 export async function getAppendRegisteredSettingFromEnv() : Promise<string | undefined> {
 	const envVar = extensionFunctions.getContext().environmentVariableCollection.get(DIDACT_APPEND_REGISTERED_SETTING);
-	await extensionFunctions.sendTextToOutputChannel(`This is what we got from the env variable ${DIDACT_APPEND_REGISTERED_SETTING} -> ${envVar?.type} ${envVar?.value}`);
 	if (!envVar) {
 		return;
 	}

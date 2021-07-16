@@ -23,7 +23,8 @@ import { clearRegisteredTutorials, getOpenAtStartupSetting,
 	addNewTutorialWithNameAndCategoryForDidactUri, 
 	removeTutorialByNameAndCategory, 
 	registerEmbeddedTutorials,
-	appendAdditionalTutorialsFromEnv} from './utils';
+	appendAdditionalTutorialsFromEnv,
+	getAppendRegisteredSettingFromEnv} from './utils';
 import { DidactUriCompletionItemProvider } from './didactUriCompletionItemProvider';
 import { DidactPanelSerializer } from './didactPanelSerializer';
 import { didactManager, VIEW_TYPE } from './didactManager';
@@ -118,6 +119,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<any> {
 	}
 
 	// append any additional tutorials if we have them
+	await extensionFunctions.sendTextToOutputChannel(`--Appending any additional tutorials if we have them`);
+	const appendTutorialsAtStartup: string | undefined = await getAppendRegisteredSettingFromEnv();
+	await extensionFunctions.sendTextToOutputChannel(`--Got this from env: ${appendTutorialsAtStartup}`);
 	await appendAdditionalTutorialsFromEnv();
 
 	// create the view
