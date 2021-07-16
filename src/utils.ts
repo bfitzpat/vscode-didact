@@ -30,7 +30,7 @@ export const DIDACT_OPEN_AT_STARTUP = 'didact.openDefaultTutorialAtStartup';
 export const DIDACT_AUTO_INSTALL_DEFAULT_TUTORIALS = 'didact.autoAddDefaultTutorials';
 export const DIDACT_CLI_LINK_LF_SETTING = 'didact.edit.cliLinkLF';
 export const DIDACT_CLI_LINK_TEXT_SETTING = 'didact.edit.cliLinkText';
-export const DIDACT_APPEND_REGISTERED_SETTING = 'didact.append.registry';
+export const DIDACT_APPEND_REGISTERED_SETTING = 'DIDACT_APPEND_REGISTRY';
 
 const CACHED_OUTPUT_CHANNELS: OutputChannel[] = new Array<OutputChannel>();
 
@@ -502,7 +502,7 @@ export function getFileExtension(pathAsString: string) : string | undefined {
 	return undefined;
 }
 
-export async function getAppendRegisteredSettingFromEnv() : Promise<string | undefined> {
+export function getAppendRegisteredSettingFromEnv() : string | undefined {
 	const envVar = extensionFunctions.getContext().environmentVariableCollection.get(DIDACT_APPEND_REGISTERED_SETTING);
 	if (!envVar) {
 		return;
@@ -512,7 +512,7 @@ export async function getAppendRegisteredSettingFromEnv() : Promise<string | und
 
 export async function appendAdditionalTutorialsFromEnv() : Promise<void> {
 	try {
-		const appendTutorialsAtStartup: string | undefined = await getAppendRegisteredSettingFromEnv();
+		const appendTutorialsAtStartup: string | undefined = getAppendRegisteredSettingFromEnv();
 		if (appendTutorialsAtStartup) {
 			await extensionFunctions.sendTextToOutputChannel(`Didact tutorials appended at startup via ${DIDACT_APPEND_REGISTERED_SETTING} with ${appendTutorialsAtStartup}`);
 			const jsonTutorials = JSON.parse(appendTutorialsAtStartup);

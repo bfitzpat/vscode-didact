@@ -120,7 +120,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<any> {
 
 	// append any additional tutorials if we have them
 	await extensionFunctions.sendTextToOutputChannel(`--Appending any additional tutorials if we have them`);
-	const appendTutorialsAtStartup: string | undefined = await getAppendRegisteredSettingFromEnv();
+	const appendTutorialsAtStartup: string | undefined = getAppendRegisteredSettingFromEnv();
 	await extensionFunctions.sendTextToOutputChannel(`--Got this from env: ${appendTutorialsAtStartup}`);
 	await appendAdditionalTutorialsFromEnv();
 

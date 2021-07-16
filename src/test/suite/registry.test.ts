@@ -129,6 +129,7 @@ suite('Didact registry test suite', () => {
 		const tutName = `AppendMe2`;
 		await appendAdditionalTutorialsFromEnv();
 		const foundTutorial = verifyTutorialInRegistry(tutName);
+		getContext().environmentVariableCollection.delete(DIDACT_APPEND_REGISTERED_SETTING);
 		assert.ok(foundTutorial, `Did not find ${tutName} registered after appending to tutorial list from settings`);
 	});
 
